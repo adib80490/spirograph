@@ -7,6 +7,10 @@ let g1Teeth = 35;
 let g2Teeth = 80;
 let g1TeethSlider;
 let g2TeethSlider;
+let g1DirectionSlider;
+let g2DirectionSlider;
+let g1Dir = 1;
+let g2Dir = -1;
 let button;
 
 
@@ -16,10 +20,38 @@ function setup() {
   g1 = new Gear(100, 100, g1Teeth, 100, 1);
   g2 = new Gear(700, 700, g2Teeth, 200,-1);
 
-  g1TeethSlider = createSlider(1,100,g1Teeth,1);
-  g2TeethSlider = createSlider(1,100,g2Teeth,1);
-  let g1DirectionSlider = createSlider(-1,1,0,2);
-  let g2DirectionSlider = createSlider(-1,1,0,2);
+
+  let containerDiv1 = createDiv();
+  containerDiv1.addClass("wrapper");
+  g1TeethSlider = createSlider(1,100,g1Teeth,1).parent(containerDiv1);
+
+  g1TeethSlider.id('g1TeethSlider')
+  let g1ValueText = createDiv().parent(containerDiv1);
+  g1ValueText.addClass("value");
+  g1ValueText.html(g1Teeth);
+  g1DirectionSlider = createSlider(-1,1,g1Dir,2).parent(containerDiv1);;
+  g1DirectionSlider.id('g1DirectionSlider');
+  g1DirectionSlider.addClass("directionSlider");
+  let containerDiv2 = createDiv();
+  containerDiv2.addClass("wrapper");
+  g2TeethSlider = createSlider(1,100,g2Teeth,1).parent(containerDiv2);
+  g2TeethSlider.id('g2TeethSlider');
+  let g2ValueText = createDiv().parent(containerDiv2);
+  g2ValueText.addClass("value");
+  g2ValueText.html(g2Teeth);
+  g2DirectionSlider = createSlider(-1,1,g2Dir,2).parent(containerDiv2);
+  g2DirectionSlider.id('g2DirectionSlider');
+  g2DirectionSlider.addClass("directionSlider");
+
+  g1TeethSlider.input(()=>{
+    g1ValueText.html(g1TeethSlider.value());
+  });
+
+  g2TeethSlider.input(()=>{
+    g2ValueText.html(g2TeethSlider.value());
+  });
+
+  
   button = createButton("Draw");
 
   button.mousePressed(() => {
@@ -30,23 +62,19 @@ function setup() {
 
     g1Teeth = g1TeethSlider.value();
     g2Teeth = g2TeethSlider.value();
+    g1Dir = g1DirectionSlider.value();
+    g2Dir = g2DirectionSlider.value();
 
-    g1 = new Gear(100, 100, g1Teeth, 100, 1);
-    g2 = new Gear(700, 700, g2Teeth, 200,-1);
+    g1 = new Gear(100, 100, g1Teeth, 100, g1Dir);
+    g2 = new Gear(700, 700, g2Teeth, 200,g2Dir);
   
     drawSpirograph();
 
   });
 
+  background(0);
 
-  g1TeethSlider.input(()=>{
-    text(g1TeethSlider.value(), 850, 10);
-  });
-
-  
-  
-
-  g1.TeethInp
+  drawSpirograph();
   
 }
 
