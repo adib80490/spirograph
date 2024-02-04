@@ -117,4 +117,54 @@ body {
   max-width: 50px;
 }
 
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 45px;
+  width: 45px;
+  background-color: #eeee;
+  border-radius: 50%;
+}
+
+.container input:checked ~ .checkmark:after {
+  position: absolute;
+  display: block;
+  content: "\27F3";
+  color: #ff5500;
+  font-weight: bolder;
+  top: 50%;
+  left: 50%;
+  transform: translate(-45%, -53%);
+  font-size: xx-large;
+}
+
+.container input:not(:checked) ~ .checkmark:after {
+  position: absolute;
+  display: block;
+  content: "\27F2";
+  font-size: xx-large;
+  color: #ff5500;
+  font-weight: bolder;
+  top: 50%;
+  left: 50%;
+  transform: translate(-57%, -53%);
+}
 

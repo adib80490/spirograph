@@ -23,13 +23,25 @@ function setup() {
 
   let containerDiv1 = createDiv();
   containerDiv1.addClass("wrapper");
-  g1TeethSlider = createSlider(1,100,g1Teeth,1).parent(containerDiv1);
 
+  g1TeethSlider = createSlider(1,100,g1Teeth,1).parent(containerDiv1);
   g1TeethSlider.id('g1TeethSlider')
+
   let g1ValueText = createDiv().parent(containerDiv1);
   g1ValueText.addClass("value");
   g1ValueText.html(g1Teeth);
+
+  let lb1 = createElement('label').parent(containerDiv1);
+  lb1.addClass('container');
+  
+  let cb1 = createCheckbox().parent(lb1);
+  let sp1 = createElement('span').parent(lb1);
+  sp1.addClass('checkmark');
+
+
   g1DirectionSlider = createSlider(-1,1,g1Dir,2).parent(containerDiv1);;
+
+
   g1DirectionSlider.id('g1DirectionSlider');
   g1DirectionSlider.addClass("directionSlider");
   let containerDiv2 = createDiv();
