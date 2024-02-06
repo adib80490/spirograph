@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: black;
+  text-align: -webkit-center;
 }
 canvas {
   display: block;
@@ -84,14 +85,14 @@ body {
 }
 
 .wrapper {
-  background: #000000;
-  max-width: 80%;
+  background: black;
+  max-width: 50%;
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 5px auto;
 }
 
 .range {
@@ -101,8 +102,8 @@ body {
   max-width: 500px;
   margin: 0 auto;
   height: 4rem;
-  width: 80%;
-  background: #000000;
+  width: 50%;
+  background: black;
   padding: 0px 10px;
 }
 
@@ -117,54 +118,30 @@ body {
   max-width: 50px;
 }
 
-.container {
-  display: block;
+/* Hide the default checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the custom checkbox container */
+.checkbox-container {
+  display: flex;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+/* Style the PNG icon */
+.checkbox-icon {
+  background-image: url('gear.png');
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease; /* Add smooth transition */
 }
 
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 45px;
-  width: 45px;
-  background-color: #eeee;
-  border-radius: 50%;
+/* Flip the icon when checkbox is checked */
+input[type="checkbox"]:checked + .checkbox-container .checkbox-icon {
+  transform: scaleX(-1);
 }
-
-.container input:checked ~ .checkmark:after {
-  position: absolute;
-  display: block;
-  content: "\27F3";
-  color: #ff5500;
-  font-weight: bolder;
-  top: 50%;
-  left: 50%;
-  transform: translate(-45%, -53%);
-  font-size: xx-large;
-}
-
-.container input:not(:checked) ~ .checkmark:after {
-  position: absolute;
-  display: block;
-  content: "\27F2";
-  font-size: xx-large;
-  color: #ff5500;
-  font-weight: bolder;
-  top: 50%;
-  left: 50%;
-  transform: translate(-57%, -53%);
-}
-

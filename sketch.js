@@ -17,72 +17,73 @@ let button;
 function setup() {
   createCanvas(800, 800);
   
-  g1 = new Gear(100, 100, g1Teeth, 100, 1);
-  g2 = new Gear(700, 700, g2Teeth, 200,-1);
+  g1 = new Gear(100, 100, g1Teeth, 100, g1Dir);
+  g2 = new Gear(700, 700, g2Teeth, 200, g2Dir);
 
 
-  let containerDiv1 = createDiv();
-  containerDiv1.addClass("wrapper");
-
-  g1TeethSlider = createSlider(1,100,g1Teeth,1).parent(containerDiv1);
-  g1TeethSlider.id('g1TeethSlider')
-
-  let g1ValueText = createDiv().parent(containerDiv1);
-  g1ValueText.addClass("value");
+  g1TeethSlider = select('#g1TeethSlider');
+  g1TeethSlider.value(g1Teeth);
+  let g1ValueText = select('#v1');
   g1ValueText.html(g1Teeth);
-
-  let lb1 = createElement('label').parent(containerDiv1);
-  lb1.addClass('container');
-  
-  let cb1 = createCheckbox().parent(lb1);
-  let sp1 = createElement('span').parent(lb1);
-  sp1.addClass('checkmark');
-
-
-  g1DirectionSlider = createSlider(-1,1,g1Dir,2).parent(containerDiv1);;
+  let cb1 = select('#cb1');
+  if(g1Dir==1){
+    cb1.checked(true);
+  }else{
+    cb1.checked(false);
+  }
 
 
-  g1DirectionSlider.id('g1DirectionSlider');
-  g1DirectionSlider.addClass("directionSlider");
-  let containerDiv2 = createDiv();
-  containerDiv2.addClass("wrapper");
-  g2TeethSlider = createSlider(1,100,g2Teeth,1).parent(containerDiv2);
-  g2TeethSlider.id('g2TeethSlider');
-  let g2ValueText = createDiv().parent(containerDiv2);
-  g2ValueText.addClass("value");
+  g2TeethSlider = select('#g2TeethSlider');
+  g2TeethSlider.value(g2Teeth);
+  let g2ValueText = select('#v2');
   g2ValueText.html(g2Teeth);
-  g2DirectionSlider = createSlider(-1,1,g2Dir,2).parent(containerDiv2);
-  g2DirectionSlider.id('g2DirectionSlider');
-  g2DirectionSlider.addClass("directionSlider");
+  let cb2 = select('#cb2')
+  if(g2Dir==1){
+    cb2.checked(true);
+  }else{
+    cb2.checked(false);
+  }
+
 
   g1TeethSlider.input(()=>{
     g1ValueText.html(g1TeethSlider.value());
+
+    drawSpirograph();
+
   });
 
   g2TeethSlider.input(()=>{
     g2ValueText.html(g2TeethSlider.value());
-  });
 
-  
-  button = createButton("Draw");
-
-  button.mousePressed(() => {
-    
-    background(0);
-
-    done = false;
-
-    g1Teeth = g1TeethSlider.value();
-    g2Teeth = g2TeethSlider.value();
-    g1Dir = g1DirectionSlider.value();
-    g2Dir = g2DirectionSlider.value();
-
-    g1 = new Gear(100, 100, g1Teeth, 100, g1Dir);
-    g2 = new Gear(700, 700, g2Teeth, 200,g2Dir);
-  
     drawSpirograph();
 
   });
+
+  cb1.input(()=>{
+    
+    if(cb1.checked()){
+      g1Dir=1;
+    }else{
+      g1Dir=-1;
+    }
+
+    drawSpirograph();
+
+  });
+
+  cb2.input(()=>{
+    
+    if(cb2.checked()){
+      g2Dir=1;
+    }else{
+      g2Dir=-1;
+    }
+
+    drawSpirograph();
+
+  });
+
+
 
   background(0);
 
@@ -92,12 +93,22 @@ function setup() {
 
 function draw() {
 
-
-  
 }
 
 
 function drawSpirograph(){
+
+  background(0);
+
+  done = false;
+
+  g1Teeth = g1TeethSlider.value();
+  g2Teeth = g2TeethSlider.value();
+  //g1Dir = g1DirectionSlider.value();
+  //g2Dir = g2DirectionSlider.value();
+
+  g1 = new Gear(100, 100, g1Teeth, 100, g1Dir);
+  g2 = new Gear(700, 700, g2Teeth, 200,g2Dir);
 
   let theta = 0;
   
