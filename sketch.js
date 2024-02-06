@@ -47,16 +47,12 @@ function setup() {
 
   g1TeethSlider.input(()=>{
     g1ValueText.html(g1TeethSlider.value());
-
     drawSpirograph();
-
   });
 
   g2TeethSlider.input(()=>{
     g2ValueText.html(g2TeethSlider.value());
-
     drawSpirograph();
-
   });
 
   cb1.input(()=>{
@@ -104,8 +100,6 @@ function drawSpirograph(){
 
   g1Teeth = g1TeethSlider.value();
   g2Teeth = g2TeethSlider.value();
-  //g1Dir = g1DirectionSlider.value();
-  //g2Dir = g2DirectionSlider.value();
 
   g1 = new Gear(100, 100, g1Teeth, 100, g1Dir);
   g2 = new Gear(700, 700, g2Teeth, 200,g2Dir);
